@@ -755,10 +755,10 @@ class FuzzManager:
             if stats is None:
                 continue
 
-            crashes = int(stats.get("unique_crashes", 0))
-            hangs = int(stats.get("unique_hangs", 0))
-            paths_total = int(stats.get("paths_total", 0))
-            paths_found = int(stats.get("paths_found", 0))
+            crashes = int(stats.get("saved_crashes", 0))
+            hangs = int(stats.get("saved_hangs", 0))
+            paths_total = int(stats.get("corpus_count", 0))
+            paths_found = int(stats.get("corpus_found", 0))
 
             sum_restarts += instance.total_restarts
             sum_crashes += crashes
@@ -791,7 +791,7 @@ class FuzzManager:
                     )
 
             newest_path_stamp = self.update_stat_timestamp(
-                stats, "last_path", newest_path_stamp
+                stats, "last_find", newest_path_stamp
             )
             newest_hang_stamp = self.update_stat_timestamp(
                 stats, "last_hang", newest_hang_stamp
