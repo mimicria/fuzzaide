@@ -953,10 +953,11 @@ class FuzzManager:
                     "\tcrashes: %d, hangs: %d, paths total: %d"
                     % (crashes, hangs, paths_total)
                 )
-                print(
-                    "\tpaths discovered: %d (%.2f%% of total paths)"
-                    % (paths_found, 100.0 * paths_found / paths_total)
-                )
+                if paths_total!=0:
+                    print(
+                        "\tpaths discovered: %d (%.2f%% of total paths)"
+                        % (paths_found, 100.0 * paths_found / paths_total)
+                    )
 
             newest_path_stamp = self.update_stat_timestamp(
                 stats, "last_path", newest_path_stamp
