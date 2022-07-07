@@ -519,7 +519,6 @@ class FuzzManager:
 
         if len(self.procs) < 1:
             return
-
         if self.args.dump_screens:
             print("Dumping status screens")
             self.dump_status_screens()
@@ -619,18 +618,20 @@ class FuzzManager:
             self.last_shown_screen_idx += 1
             self.last_shown_screen_idx %= len(self.procs)
 
-    def dump_status_screens(self, outfile=sys.stdout):
+    def dump_status_screens(self):
         """
         Print status screens of all fuzzer instances
         """
 
         self.last_shown_screen_idx = 0
-        outbuf = getattr(outfile, "buffer", outfile)
+        counter=0
         for _ in self.procs:
-            outbuf.write(b"\n" * 40) # messy "workaround" for overlapping status screens (tmux, etc)
-            self.display_next_status_screen(outfile=outfile, dump=True)
+            sname = self.args.dump_screens+str(counter)
+            screenshot = open(sname, 'w')
+            self.display_next_status_screen(outfile=screenshot, dump=True)
+            counter+=1
+            screenshot.close()
 
-        outbuf.write(b"\n\n")
 
     def get_fuzzer_stats(self, output_dir, idx, instance):
         """

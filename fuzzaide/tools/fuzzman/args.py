@@ -138,7 +138,8 @@ def add_args_to_parser(parser):
     parser.add_argument(
         "--dump-screens",
         help="dump all status screens on job stop (default: don't dump)",
-        action="store_true",
+        default=None,
+        type=str,
     )
     parser.add_argument(
         "--dump-cmd-file",
