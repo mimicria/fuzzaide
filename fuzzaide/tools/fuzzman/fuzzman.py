@@ -454,12 +454,15 @@ class FuzzManager:
                 power_schedule = " -p seek"
 
             worker_name += str(i + 1)
+            afl_banner = args.program[0]+"_"+worker_name
 
             if args.no_power_schedules:
                 power_schedule = ""
 
             cmd = (
                 args.fuzzer_binary
+                + " -T "
+                + afl_banner
                 + " -i "
                 + args.input_dir
                 + " -o "
