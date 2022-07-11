@@ -454,7 +454,7 @@ class FuzzManager:
                 power_schedule = " -p seek"
 
             worker_name += str(i + 1)
-            afl_banner = args.program[0]+"_"+worker_name
+            afl_banner = os.path.basename(args.program[0])+"_"+worker_name
 
             if args.no_power_schedules:
                 power_schedule = ""
