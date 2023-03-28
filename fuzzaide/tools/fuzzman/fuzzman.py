@@ -444,7 +444,7 @@ class FuzzManager:
             if i == 0:
                 role = "-M"
                 worker_name = "m"
-                power_schedule = " -p exploit"
+                power_schedule = " -p explore"
                 if args.dict:
                     dictionary = " -x " + args.dict
 
